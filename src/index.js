@@ -1,20 +1,20 @@
 import 'lodash';
 import './style.css';
 
-const todoList = document.getElementById('todo-list');
+const mainList = document.getElementById('main-list');
 
 const myTasks = [{
-  description: 'Understand JavaScript ES6',
+  description: 'Read ES6 Modules',
   completed: true,
   index: 0,
 },
 {
-  description: 'Work on my social media',
+  description: 'Read Webpack',
   completed: true,
   index: 1,
 },
 {
-  description: 'Complete To Do List project',
+  description: 'List structure project',
   completed: false,
   index: 2,
 }];
@@ -27,11 +27,10 @@ function displayTasks() {
     const listItem = document.createElement('li');
     listItem.innerText = content;
     listItem.className = 'list-item';
-    todoList.appendChild(listItem);
+    mainList.appendChild(listItem);
   }
 }
 
 window.addEventListener('load', () => {
   displayTasks();
 });
-
