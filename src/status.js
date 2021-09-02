@@ -1,4 +1,4 @@
-const status = (e, tasklist) => {
+function status(e, tasklist) {
   if (e.target.classList.contains('unchecked')) {
     e.target.classList.value = 'checked';
     tasklist.completed = true;
