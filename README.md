@@ -12,7 +12,7 @@
 
 ### To get a local copy run the following steps:
 
-- [Copy this link](https://github.com/mbdesigns1989/To-do-List/tree/interactive-list)
+- [Copy this link](https://github.com/mbdesigns1989/To-do-List/tree/To-Do-list-add-and-remove)
 - Open your terminal or command line
 - Run `git clone` and paste the link
 - Open the folder with your code editor
