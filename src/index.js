@@ -7,7 +7,7 @@ const mainList = document.getElementById('main-list');
 
 let myTasks = [{
   description: 'Understand JavaScript ES6',
-  completed: false,
+  completed: true,
   index: 0,
 },
 {
@@ -21,11 +21,11 @@ let myTasks = [{
   index: 2,
 }];
 
-function saveToStorage(taskArray) {
+const saveToStorage = (taskArray) => {
   localStorage.setItem('tasks', JSON.stringify(taskArray));
 }
 
-function displayTasks() {
+const displayTasks = () => {
   for (let i = 0; i < myTasks.length; i += 1) {
     const content = `<div class="list-input"><input type="checkbox"> <p>${myTasks[i].description}</p></div><span><i class="fas fa-ellipsis-v"></i></span>`;
 
@@ -54,7 +54,7 @@ function displayTasks() {
   }
 }
 
-function getFromStorage() {
+const getFromStorage = () => {
   const local = localStorage.getItem('tasks');
   if (local) {
     myTasks = JSON.parse(local);
