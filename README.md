@@ -8,6 +8,9 @@
 - JavaScript(ES6)
 - Webpack
 
+## Live Demo
+- https://mbdesigns1989.github.io/To-do-List/
+
 ## Getting Started
 
 ### To get a local copy run the following steps:
