@@ -7,9 +7,10 @@
 - CSS
 - JavaScript(ES6)
 - Webpack
+- Jest Library
 
 ## Live Demo
-- https://mbdesigns1989.github.io/To-do-List/
+- https://mbdesigns1989.github.io/To-do-List/ or at http://localhost:8080/
 
 ## Getting Started
 
@@ -23,6 +24,8 @@
 - Run `npm install`
 - Run `npm run build`
 - Run `npm start` and it will load the app in your default browser.
+- Run `npm run start` to launch the server.
+- Run `npm run test` to run jest test cases.
 
 ## Authors
 
@@ -31,6 +34,12 @@
 - GitHub: (https://github.com/mbdesigns1989)
 - Twitter: (https://twitter.com/mohamed66083152)
 - LinkedIn: (https://www.linkedin.com/in/mohamed-badr-27b26a212/)
+
+## Author 2
+
+GitHub: (https://github.com/Busiwa24) 
+Twitter: (https://twitter.com/busiwaliuma) 
+LinkedIn: (https://www.linkedin.com/in/busiwa-liuma-28385b80/>)
 
 ##  Contributing
 

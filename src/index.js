@@ -1,94 +1,91 @@
+import './style/style.css';
 
-import './style.css';
-import status from './status.js';
 import {
-  addTask, editTask, deleteTask, clearChecked,
-} from './add_remove.js';
+  addTask, clearCompleted, editTask, removeTask,
+} from './module/task';
 
-const mainList = document.getElementById('main-list');
-const clearAll = document.getElementById('clear');
+import completed from './module/completed';
 
-let myTasks = [];
+const listContainer = document.querySelector('.lists');
+const add = document.getElementById('add-btn');
+const input = document.getElementById('new-task');
+const clear = document.getElementById('clear-btn');
+let inputtedTask;
 
-// Save to local storage
-function saveToStorage(taskArray) {
-  localStorage.setItem('tasks', JSON.stringify(taskArray));
-}
+const tasks = localStorage.getItem('tasks') !== null
+  ? JSON.parse(localStorage.getItem('tasks'))
+  : [];
 
-// Display Tasks
-function displayTasks() {
-  mainList.innerHTML = '';
-  for (let i = 0; i < myTasks.length; i += 1) {
-    const content = `<div class="list-input"><input type="checkbox"> <p class="description">${myTasks[i].description}</p></div><span><i class="far fa-edit"></i><i class="far fa-trash-alt"></i></span>`;
-
-    const listItem = document.createElement('li');
-    listItem.innerHTML = `${content}`;
-    listItem.className = 'list-item';
-    mainList.appendChild(listItem);
-
-    const listInput = listItem.firstChild;
-    const checkbox = listInput.firstChild;
-    const para = listInput.lastChild;
-    const editIcon = listInput.nextSibling.firstChild;
-    const trashIcon = editIcon.nextSibling;
-    trashIcon.style.display = 'none';
-
-    // Update checkbox status
-    if (myTasks[i].completed) {
-      checkbox.classList.add('checked');
+const iterate = () => {
+  tasks.sort((a, b) => b.index - a.index);
+  tasks.forEach((item) => {
+    const li = document.createElement('li');
+    li.className = 'ul-li';
+    const div = document.createElement('div');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = 'completed';
+    checkbox.name = 'completed';
+    checkbox.className = 'checkbox';
+    const description = document.createElement('p');
+    description.className = 'description';
+    description.innerText = `${item.description}`;
+    const deleteIcon = document.createElement('button');
+    deleteIcon.className = 'del-btn';
+    deleteIcon.type = 'button';
+    deleteIcon.innerHTML = '<i class="far fa-trash-alt"></i>';
+    if (item.completed === true) {
       checkbox.checked = true;
-      checkbox.addEventListener('change', (e) => {
-        status(e, myTasks[i]);
-        saveToStorage(myTasks);
-      });
+      description.style.textDecoration = 'line-through solid';
     } else {
-      checkbox.classList.add('unchecked');
-      checkbox.addEventListener('change', (e) => {
-        status(e, myTasks[i]);
-        saveToStorage(myTasks);
-      });
+      checkbox.checked = false;
     }
-
-    // Edit task
-    editTask(editIcon, para, i);
-
-    trashIcon.addEventListener('click', () => {
-      deleteTask(myTasks, i);
+    checkbox.addEventListener('change', (event) => {
+      completed(item.index, item, event, description);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
     });
-  }
-}
-
-clearAll.addEventListener('click', () => {
-  clearChecked(myTasks);
-});
-
-// Add new task with enter icon
-const enterBtn = document.getElementById('enter');
-enterBtn.onclick = () => {
-  addTask(myTasks);
-  displayTasks();
+    description.addEventListener('click', () => {
+      description.setAttribute('contenteditable', 'true');
+      description.addEventListener('input', () => {
+        item.description = description.innerText;
+        editTask(item, tasks);
+      });
+    });
+    li.addEventListener('mouseover', () => {
+      deleteIcon.style.display = 'block';
+    });
+    li.addEventListener('mouseleave', () => {
+      deleteIcon.style.display = 'none';
+    });
+    deleteIcon.addEventListener('click', () => {
+      removeTask(item.index, tasks);
+      window.location.reload();
+    });
+    div.appendChild(checkbox);
+    div.appendChild(description);
+    li.appendChild(div);
+    li.appendChild(deleteIcon);
+    listContainer.appendChild(li);
+  });
 };
 
-// Add new task with enter keypress
-const inputList = document.getElementById('inputList');
-inputList.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    addTask(myTasks);
-    displayTasks();
+window.addEventListener('load', iterate);
+input.addEventListener('input', (e) => {
+  inputtedTask = e.target.value;
+});
+
+add.addEventListener('click', () => {
+  if (inputtedTask !== undefined) {
+    const newTask = addTask(tasks, inputtedTask);
+    tasks.push(newTask);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    window.location.reload();
+  } else {
+    // eslint-disable-next-line no-alert
+    alert('Input a task description');
   }
 });
 
-// Get from local storage
-function getFromStorage() {
-  const local = JSON.parse(localStorage.getItem('tasks'));
-  if (local) {
-    myTasks = local;
-  }
-  if (myTasks.length === 0) {
-    mainList.innerHTML = '<li class="list-item"><div class="list-input"><p>To-Do List is empty.</p></div></li>';
-  } else {
-    displayTasks();
-  }
-}
-
-window.onload = getFromStorage();
+clear.addEventListener('click', () => {
+  clearCompleted(tasks);
+});
