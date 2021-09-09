@@ -28,3 +28,40 @@ describe('adding a task to the list', () => {
   });
 });
 
+describe('deleting a task from the list', () => {
+  const myTasks = [
+    {
+      description: 'Study Jest',
+      completed: false,
+      index: 1,
+    },
+
+    {
+      description: 'Submit Jest Project',
+      completed: false,
+      index: 2,
+    },
+
+    {
+      description: 'Get Some Sleep',
+      completed: false,
+      index: 3,
+    },
+
+    {
+      description: 'Meet Standup Team',
+      completed: false,
+      index: 4,
+    },
+
+  ];
+
+  test('Delete task with index 2', () => {
+    deleteTask(myTasks, 2);
+    expect((myTasks)).toHaveLength(3);
+  });
+
+  test('Update index after task deletion', () => {
+    expect(myTasks[2].index).toBe(3);
+  });
+});
