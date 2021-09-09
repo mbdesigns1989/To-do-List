@@ -10,7 +10,7 @@
 - Jest Library
 
 ## Live Demo
-- https://mbdesigns1989.github.io/To-do-List/ or at http://localhost:8080/
+- at http://localhost:8080/
 
 ## Getting Started
 
