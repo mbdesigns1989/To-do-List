@@ -1,42 +1,46 @@
-import './style/style.css';
+import './style.css';
 
 import {
-  addTask, clearCompleted, editTask, removeTask,
-} from './module/task';
+  setTask, editTask, deleteTask, clearCompleted, 
+} from './tasks';
 
-import completed from './module/completed';
+import completed from './completed';
 
-const listContainer = document.querySelector('.lists');
-const add = document.getElementById('add-btn');
-const input = document.getElementById('new-task');
-const clear = document.getElementById('clear-btn');
-let inputtedTask;
+const todoContainer = document.querySelector('.todo-lists');
+const addTask = document.getElementById('add-todo');
+const taskInput = document.getElementById('new-todo');
+const clearComplete = document.getElementById('clear-todo');
+let insertedTask;
 
-const tasks = localStorage.getItem('tasks') !== null
-  ? JSON.parse(localStorage.getItem('tasks'))
-  : [];
+let tasks;
+if (localStorage.getItem('tasks') !== null) {
+  tasks = JSON.parse(localStorage.getItem('tasks'));
+} else {
+  tasks = [];
+}
 
-const iterate = () => {
+
+const generateTasks = () => {
   tasks.sort((a, b) => b.index - a.index);
   tasks.forEach((item) => {
     const li = document.createElement('li');
-    li.className = 'ul-li';
+    li.className = 'todo-li';
     const div = document.createElement('div');
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.id = 'completed';
-    checkbox.name = 'completed';
     checkbox.className = 'checkbox';
+    
     const description = document.createElement('p');
-    description.className = 'description';
+    
     description.innerText = `${item.description}`;
-    const deleteIcon = document.createElement('button');
-    deleteIcon.className = 'del-btn';
-    deleteIcon.type = 'button';
-    deleteIcon.innerHTML = '<i class="far fa-trash-alt"></i>';
+    const removeIcon = document.createElement('button');
+    removeIcon.className = 'del-todo';
+    removeIcon.type = 'button';
+    removeIcon.innerHTML = '<i class="far fa-trash-alt"></i>';
     if (item.completed === true) {
       checkbox.checked = true;
-      description.style.textDecoration = 'line-through solid';
+      description.style.textDecoration = 'line-through';
     } else {
       checkbox.checked = false;
     }
@@ -52,41 +56,41 @@ const iterate = () => {
       });
     });
     li.addEventListener('mouseover', () => {
-      deleteIcon.style.display = 'block';
+      removeIcon.style.display = 'block';
     });
     li.addEventListener('mouseleave', () => {
-      deleteIcon.style.display = 'none';
+      removeIcon.style.display = 'none';
     });
-    deleteIcon.addEventListener('click', () => {
-      removeTask(item.index, tasks);
+    removeIcon.addEventListener('click', () => {
+      deleteTask(item.index, tasks);
       window.location.reload();
     });
     div.appendChild(checkbox);
     div.appendChild(description);
     li.appendChild(div);
-    li.appendChild(deleteIcon);
-    listContainer.appendChild(li);
+    li.appendChild(removeIcon);
+    todoContainer.appendChild(li);
   });
 };
 
-window.addEventListener('load', iterate);
-input.addEventListener('input', (e) => {
-  inputtedTask = e.target.value;
+window.addEventListener('load', generateTasks);
+taskInput.addEventListener('input', (e) => {
+  insertedTask = e.target.value;
 });
 
-add.addEventListener('click', () => {
-  if (inputtedTask !== undefined) {
-    const newTask = addTask(tasks, inputtedTask);
+addTask.addEventListener('click', () => {
+  if (insertedTask) {
+    const newTask = setTask(tasks, insertedTask);
     tasks.push(newTask);
     localStorage.setItem('tasks', JSON.stringify(tasks));
     window.location.reload();
   } else {
     // eslint-disable-next-line no-alert
-    alert('Input a task description');
+    alert('Add a new task');
   }
 });
 
-clear.addEventListener('click', () => {
+clearComplete.addEventListener('click', () => {
   clearCompleted(tasks);
   window.location.reload();
 });

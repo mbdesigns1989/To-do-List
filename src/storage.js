@@ -1,5 +1,5 @@
-const setStorage = (tasks) => {
+const addStorage = (tasks) => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
-export default setStorage;
+export default addStorage;

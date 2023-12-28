@@ -10,13 +10,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: fit-content;
   padding: 30px;
   background-color: #f5f5f5;
-}
-
-button {
-  font-family: 'Space Mono', monospace;
 }
 
 ul {
@@ -29,10 +25,12 @@ li {
 }
 
 form {
+  height: 50px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 2px;
+  padding: 12px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13), 0 4px 10px 0 rgba(0, 0, 0, 0.13);
 }
 
 input {
@@ -45,88 +43,66 @@ input:focus {
   outline: none;
 }
 
-.icn-btn {
+.add-icon {
   border: none;
   background: none;
-  font-size: 20px;
-  color: #414141;
-  transition: all 0.4s ease 0s;
-}
-
-.icn-btn:hover {
   font-size: 25px;
+  color: #0078d7;
   transition: all 0.4s ease 0s;
 }
 
-.header {
+.title {
   font-weight: 700;
   font-size: 20px;
+  color: #0078d7;
+  margin-left: 250px;
 }
 
 .container {
-  width: 100%;
+  width: 70%;
   background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.18), 0 6px 20px 0 rgba(0, 0, 0, 0.13);
 }
 
-@media (min-width: 768px) {
-  .container {
-    width: 50%;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    width: 30%;
-  }
-}
-
-.container .lists {
-  display: flex;
-  flex-direction: column;
-}
-
-.container .ul-li {
+.container .todo-li {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.container .ul-li div {
+.container .todo-li div {
   display: flex;
   align-items: center;
 }
 
-.container .ul-li .checkbox {
-  margin-right: 20px;
+.container .todo-li .checkbox {
+  margin-right: 15px;
+  padding: 20px;
 }
 
-.container .ul-li div .checkbox {
-  margin-right: 20px;
+.container .todo-li div .checkbox {
+  margin-right: 15px;
+  padding: 20px;
 }
 
-.container .ul-li .del-btn {
-  display: none;
+.container .todo-li .del-todo {
   border: none;
-  background: transparent;
-  font-size: 16px;
+  font-size: 20px;
   align-self: flex-end;
   justify-self: flex-end;
 }
 
-.container .ul-li .del-btn:hover {
-  color: lightcoral;
+.container .todo-li .del-todo:hover {
+  color: #0078d7;
 }
 
-.container .clear-btn {
+.container .clear-todo {
   width: 100%;
-  padding: 15px;
-  background-color: #f5f5f5;
+  padding: 150px;
+  font-size: 20px;
   border: none;
-  transition: all 0.4s ease 0s;
 }
 
-.container .clear-btn:hover {
+.container .clear-todo:hover {
   text-decoration: underline;
-  color: lightcoral;
+  color: #0078d7;
 }

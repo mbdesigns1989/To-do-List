@@ -1,5 +1,5 @@
 let items = [];
-export const setStorage = (tasks) => {
+export const addStorage = (tasks) => {
   items = tasks;
   return items;
 };
