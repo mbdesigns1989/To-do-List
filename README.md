@@ -8,6 +8,7 @@
 - JavaScript(ES6)
 - Webpack
 - Jest Library
+- npm
 
 ## Live Demo
 - at http://localhost:8080/
