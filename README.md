@@ -32,15 +32,16 @@
 
 👤 **Author1**
 
-- GitHub: (https://github.com/mbdesigns1989)
-- Twitter: (https://twitter.com/mohamed66083152)
-- LinkedIn: (https://www.linkedin.com/in/mohamed-badr-27b26a212/)
+- Mohamed Badr
+- [GitHub](https://github.com/mbdesigns1989)
+- [Twitter_X](https://twitter.com/mohamed66083152)
+- [LinkedIn](https://www.linkedin.com/in/mohamed-badr-27b26a212/)
 
 ## Author 2
-
-GitHub: (https://github.com/Busiwa24) 
-Twitter: (https://twitter.com/busiwaliuma) 
-LinkedIn: (https://www.linkedin.com/in/busiwa-liuma-28385b80/>)
+- Busiwa Liuma
+- [GitHub](https://github.com/Busiwa24) 
+- [Twitter_X](https://twitter.com/busiwaliuma) 
+- [LinkedIn](https://www.linkedin.com/in/busiwa-liuma-28385b80/>)
 
 ##  Contributing
 
